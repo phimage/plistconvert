@@ -36,7 +36,7 @@ jobs:
           export PATH="$SWIFTENV_ROOT/bin:$PATH"
           eval "$(swiftenv init -)"
           echo "$PATH" >> $GITHUB_PATH
-      - run: rm .swift-version
+      - run: rm -f .swift-version
       - name: Install Swift
         run: swiftenv install "5.5" --skip-existing
       - name: Build
