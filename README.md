@@ -12,7 +12,7 @@ Just download from release if any, or build it (and move it to `PATH`)
 
 ### On linux
 
-Some dependencies lib must be installed
+Some dependencies lib must be installed if not the static library
 
 so if you have not already added the swiftlang repo:
 
@@ -59,6 +59,12 @@ $ du -sh /usr/lib/swift/
 
 ```bash
 swift build -c release
+```
+
+or if we want without swift runtime dependencies (ie static executable)
+
+```bash
+swift build -c release -Xswiftc -static-executable
 ```
 
 ### Install swift on linux
