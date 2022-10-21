@@ -4,17 +4,17 @@ import Foundation
 
 extension PropertyList.Format {
     init?(string: String) {
-        switch string.lowercased()  {
-            case "openstep":
-                self = .openStep
-            case "xml", "xml1":
-                self = .xml
-            case "json":
-                self = .json
-            case "binary":
-                self = .binary
-            default:
-                return nil
+        switch string.lowercased() {
+        case "openstep":
+            self = .openStep
+        case "xml", "xml1":
+            self = .xml
+        case "json":
+            self = .json
+        case "binary":
+            self = .binary
+        default:
+            return nil
         }
     }
 }
