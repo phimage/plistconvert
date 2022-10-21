@@ -8,6 +8,8 @@ then
     ./build.sh
 fi
 
+exitStatus=0
+
 # json
 $cmd  --convert "json" --extension "json" $file.pbxproj
 
@@ -24,6 +26,7 @@ then
     echo "✅ json"
 else
     echo "🚫 json"
+    exitStatus=1
 fi
 rm $file.json 
 
@@ -41,6 +44,7 @@ then
     echo "✅ xml"
 else
     echo "🚫 xml"
+    exitStatus=1
 fi
 rm $file.xml 
 
@@ -51,5 +55,8 @@ then
     echo "✅ binary"
 else
     echo "🚫 binary"
+    exitStatus=1
 fi
 rm $file.binary 
+
+exit $exitStatus
