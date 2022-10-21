@@ -1,5 +1,11 @@
 # plistconvert
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://mit-license.org)
+[![Platform](http://img.shields.io/badge/platform-macOS_Linux-lightgrey.svg?style=flat)](https://developer.apple.com/resources/)
+[![Language](http://img.shields.io/badge/language-swift-orange.svg?style=flat)](https://developer.apple.com/swift)
+[![build](https://github.com/phimage/plistconvert/actions/workflows/build.yml/badge.svg)](https://github.com/phimage/plistconvert/actions/workflows/build.yml)
+[![Sponsor](https://img.shields.io/badge/Sponsor-%F0%9F%A7%A1-white.svg?style=flat)](https://github.com/sponsors/phimage)
+
 ## Install
 
 Just download from release if any, or build it (and move it to `PATH`)
@@ -20,7 +26,7 @@ then you can install just the minimum package `slim`
 sudo apt install swiftlang-slim
 ```
 
-current depencies 
+#### current depencies info 
 
 ```bash
 $ ldd plistconvert 
@@ -59,7 +65,7 @@ swift build -c release
 
 #### Download from 
 
-[Swift official wevsite](https://www.swift.org/download/)
+[Swift official website](https://www.swift.org/download/)
 
 #### Download with apt on swiftlang.xyz
 
