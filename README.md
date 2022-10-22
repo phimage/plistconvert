@@ -12,13 +12,13 @@ Just download from release if any, or build it (and move it to `PATH`)
 
 or alternatively execute install script
 
-````bash
+```bash
 sudo curl -sL https://phimage.github.io/plistconvert/install.sh | bash
 ```
 
 ### On linux
 
-Some dependencies lib must be installed if not the static library
+Some dependencies lib must be installed if you install dynamic binary
 
 so if you have not already added the swiftlang repo:
 
@@ -26,13 +26,13 @@ so if you have not already added the swiftlang repo:
 curl -s https://archive.swiftlang.xyz/install.sh | sudo bash
 ```
 
-then you can install just the minimum package `slim`
+then you can install just the minimum package `slim` (or the full one see build)
 
 ```bash
 sudo apt install swiftlang-slim
 ```
 
-#### current depencies info 
+#### current depencies info for dynamic executable
 
 ```bash
 $ ldd plistconvert 
