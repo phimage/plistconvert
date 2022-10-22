@@ -10,6 +10,12 @@
 
 Just download from release if any, or build it (and move it to `PATH`)
 
+or alternatively execute install script
+
+````bash
+sudo curl -sL https://phimage.github.io/plistconvert/install.sh | bash
+```
+
 ### On linux
 
 Some dependencies lib must be installed if not the static library
