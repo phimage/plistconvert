@@ -6,6 +6,28 @@
 [![build](https://github.com/phimage/plistconvert/actions/workflows/build.yml/badge.svg)](https://github.com/phimage/plistconvert/actions/workflows/build.yml)
 [![Sponsor](https://img.shields.io/badge/Sponsor-%F0%9F%A7%A1-white.svg?style=flat)](https://github.com/sponsors/phimage)
 
+Convert plist from and to `json`, `xml`, `binary`, `openStep` formats
+
+## Usage
+
+### Convert in place
+
+```bash
+plistconvert --convert json /path/to/my.plist
+```
+
+### Convert to a new file
+
+```bash
+plistconvert --convert json --output /path/to/my.json /path/to/my.plist
+```
+
+you could ouput result to standards output using same option
+
+```bash
+plistconvert --convert json --output /dev/stdout
+```
+
 ## Install
 
 Just download from release if any, or build it (and move it to `PATH`)
@@ -16,9 +38,9 @@ or alternatively execute install script
 sudo curl -sL https://phimage.github.io/plistconvert/install.sh | bash
 ```
 
-### On linux
+### On linux for dynamic binary
 
-Some dependencies lib must be installed if you install dynamic binary
+Some dependencies lib must be installed if you install the dynamic binary
 
 so if you have not already added the swiftlang repo:
 
@@ -26,13 +48,15 @@ so if you have not already added the swiftlang repo:
 curl -s https://archive.swiftlang.xyz/install.sh | sudo bash
 ```
 
-then you can install just the minimum package `slim` (or the full one see build)
+then you can install just the minimum package `slim` (or the full one see build chapter)
 
 ```bash
 sudo apt install swiftlang-slim
 ```
 
-#### current depencies info for dynamic executable
+#### current dependencies info for dynamic executable 
+
+linked to swift lib and os lib
 
 ```bash
 $ ldd plistconvert 
@@ -61,7 +85,7 @@ $ du -sh /usr/lib/swift/
 124M	/usr/lib/swift/
 ```
 
-## Build
+## Build yourself
 
 ```bash
 swift build -c release
@@ -73,7 +97,7 @@ or if we want without swift runtime dependencies (ie static executable)
 swift build -c release -Xswiftc -static-executable
 ```
 
-### Install swift on linux
+### Install swift on linux (needed to build)
 
 #### Download from 
 
@@ -90,3 +114,5 @@ Then install the full swiftlang package to install `swift` command
 ```bash
 sudo apt install swiftlang
 ```
+
+#### or use swiftenv
