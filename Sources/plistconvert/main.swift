@@ -2,23 +2,6 @@ import XcodeProjKit
 import ArgumentParser
 import Foundation
 
-extension PropertyList.Format {
-    init?(string: String) {
-        switch string.lowercased() {
-        case "openstep":
-            self = .openStep
-        case "xml", "xml1":
-            self = .xml
-        case "json":
-            self = .json
-        case "binary":
-            self = .binary
-        default:
-            return nil
-        }
-    }
-}
-
 struct Cmd: ParsableCommand {
 
     @Option(name: .shortAndLong, help: "Specify an alternate path name for the result of the convert operation")
@@ -49,9 +32,14 @@ struct Cmd: ParsableCommand {
 
     mutating func run() throws {
         let url = URL(fileURLWithPath: self.path)
-        let xcodeProj = try XcodeProj(url: url)
-
-        try xcodeProj.write(to: outputURL, format: self.format)
+        let format = self.format
+        if format == .openStep {
+            let xcodeProj = try XcodeProj(url: url)
+            try xcodeProj.write(to: outputURL, format: format)
+        } else {
+            let plist = try PropertyList(url: url)
+            try plist.write(to: outputURL, format: format)
+        }
     }
 }
 
