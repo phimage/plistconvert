@@ -42,7 +42,7 @@ curl -sL https://github.com/phimage/plistconvert/releases/latest/download/$archi
 if [[ "$OSTYPE" == "darwin"* ]]; then  # Mac OSX
   unzip -q $archive -d $TMP/
 else
-  tar -zxf $archive -C $TMP/
+  unzip -q $archive -d $TMP/
 fi
 
 binary=$TMP/plistconvert 
