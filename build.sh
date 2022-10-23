@@ -1,5 +1,9 @@
-#!/bin/bash
+./#!/bin/bash
+mode=release
+bin=.build/$mode/plistconvert
 
-swift build -c release
+rm -f $bin
 
-.build/release/plistconvert --help
+swift build -c $mode
+
+$bin --help
