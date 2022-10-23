@@ -21,7 +21,10 @@ struct Cmd: ParsableCommand {
     }
 
     var outputURL: URL {
-        if let output = self.output {
+        if var output = self.output {
+            if output == "-" {
+                output = "/dev/stdout"
+            }
             return URL(fileURLWithPath: output)
         }
         if let ext = self.`extension` {

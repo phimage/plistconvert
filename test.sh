@@ -12,6 +12,7 @@ exitStatus=0
 
 # json
 $cmd  --convert "json" --extension "json" $file.pbxproj
+$cmd  --convert "json" --output - $file.pbxproj > $file.stdout
 
 bin=$([[ "$OSTYPE" == "darwin"* ]] && echo "jsonlint"  || echo "jsonlint-php")
 if [ -z "$(which $bin)" ]; then
@@ -29,6 +30,15 @@ else
     exitStatus=1
 fi
 rm $file.json 
+
+if "$bin" $file.stdout > /dev/null
+then
+    echo "✅ json in stdout"
+else
+    echo "🚫 json in stdout"
+    exitStatus=1
+fi
+rm $file.stdout
 
 # xml
 $cmd  --convert "xml" --extension "xml" $file.pbxproj
