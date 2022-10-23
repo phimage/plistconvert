@@ -1,4 +1,4 @@
-./#!/bin/bash
+#!/bin/bash
 mode=release
 bin=.build/$mode/plistconvert
 
