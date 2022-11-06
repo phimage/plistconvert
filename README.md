@@ -6,7 +6,7 @@
 [![build](https://github.com/phimage/plistconvert/actions/workflows/build.yml/badge.svg)](https://github.com/phimage/plistconvert/actions/workflows/build.yml)
 [![Sponsor](https://img.shields.io/badge/Sponsor-%F0%9F%A7%A1-white.svg?style=flat)](https://github.com/sponsors/phimage)
 
-Convert plist from and to `json`, `xml`, `binary`, `openStep` formats
+Convert `plist` or Xcode project (`xxx.xcodeproj/project.pbxproj`) from and to `json`, `xml`, `binary` or `openStep` formats
 
 ## Usage
 
@@ -14,6 +14,10 @@ Convert plist from and to `json`, `xml`, `binary`, `openStep` formats
 
 ```bash
 plistconvert --convert json /path/to/my.plist
+```
+
+```bash
+plistconvert --convert json /path/to/xcode.xcodeproj
 ```
 
 ### Convert to a new file
