@@ -29,7 +29,7 @@ plistconvert --convert json --output /path/to/my.json /path/to/my.plist
 you could ouput result to standards output using same option
 
 ```bash
-plistconvert --convert json --output /dev/stdout
+plistconvert --convert json --output /dev/stdout # or --output -
 ```
 
 ## Install

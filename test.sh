@@ -1,6 +1,10 @@
 #!/bin/bash
 
-cmd=.build/release/plistconvert
+if [[ "$OSTYPE" == "darwin"* ]]; then  # Mac OSX
+    cmd=.build/apple/Products/Release/plistconvert
+else
+    cmd=.build/release/plistconvert
+fi
 file=.build/checkouts/XcodeProjKit/Tests/ok/advance.56412ec.project
 
 if [[ ! -f "$cmd" ]]
@@ -12,7 +16,6 @@ exitStatus=0
 
 # json
 $cmd  --convert "json" --extension "json" $file.pbxproj
-$cmd  --convert "json" --output - $file.pbxproj > $file.stdout
 
 bin=$([[ "$OSTYPE" == "darwin"* ]] && echo "jsonlint"  || echo "jsonlint-php")
 if [ -z "$(which $bin)" ]; then
@@ -30,6 +33,9 @@ else
     exitStatus=1
 fi
 rm $file.json 
+
+# json stdout
+$cmd  --convert "json" --output - $file.pbxproj > $file.stdout
 
 if "$bin" $file.stdout > /dev/null
 then

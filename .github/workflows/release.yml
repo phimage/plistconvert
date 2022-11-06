@@ -1,0 +1,38 @@
+name: release
+on: 
+  release:
+    types: [published]
+
+jobs:
+  update:
+    name: build
+    runs-on: macOS-latest
+    steps:
+      - name: ⬇️ Checkout
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+      - name: 🏗 swiftbuild
+        run: |
+          swift build -c release --arch arm64 --arch x86_64
+      - name: 📦 Build archive
+        run: |
+          REPOSITORY_NAME=$(jq --raw-output '.repository.name' $GITHUB_EVENT_PATH)
+          cd .build/apple/Products/Release/
+          zip -r $REPOSITORY_NAME.zip $REPOSITORY_NAME
+      - name: ⬆️ Upload to Release
+        run: |
+          REPOSITORY_NAME=$(jq --raw-output '.repository.name' $GITHUB_EVENT_PATH)
+          ARTIFACT=.build/apple/Products/Release/$REPOSITORY_NAME.zip
+          AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
+          CONTENT_LENGTH_HEADER="Content-Length: $(stat -f%z "$ARTIFACT")"
+          CONTENT_TYPE_HEADER="Content-Type: application/zip"
+          RELEASE_ID=$(jq --raw-output '.release.id' $GITHUB_EVENT_PATH)
+          FILENAME=$(basename $ARTIFACT)
+          UPLOAD_URL="https://uploads.github.com/repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID/assets?name=$FILENAME"
+          echo "$UPLOAD_URL"
+          curl -sSL -XPOST \
+            -H "$AUTH_HEADER" -H "$CONTENT_LENGTH_HEADER" -H "$CONTENT_TYPE_HEADER" \
+            --upload-file "$ARTIFACT" "$UPLOAD_URL"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
